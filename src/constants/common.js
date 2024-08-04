@@ -7,3 +7,26 @@ export const provinces = [
   { value: "6", label: "Province 6" },
   { value: "7", label: "Province 7" },
 ];
+
+export const header = [
+  {
+    key: "id",
+    label: "id",
+  },
+  {
+    key: "name",
+    label: "Name",
+  },
+  {
+    key: "email",
+    label: "Email",
+  },
+  {
+    key: "phone",
+    label: "Phone",
+  },
+  {
+    key: "city",
+    label: "City",
+  },
+];

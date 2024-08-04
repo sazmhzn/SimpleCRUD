@@ -3,9 +3,18 @@ import FormComponent from "../components/FormComponent";
 import Table from "../components/Table";
 import { useEffect, useState } from "react";
 import { validEmail, validNumber } from "../constants";
+import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useParams } from "react-router-dom";
+import { header } from "../constants/common";
+import { getData, upsertData } from "../service/StorageService";
 
 const Home = () => {
+  const { id } = useParams();
+
   const [user, setUser] = useState({
+    id: "",
     name: "",
     email: "",
     phoneNumber: "",
@@ -14,7 +23,7 @@ const Home = () => {
     district: "",
     province: "",
     country: "Nepal",
-    profilePicture: null,
+    profilePicture: "",
   });
 
   const [erMessage, setErMessager] = useState({
@@ -26,10 +35,12 @@ const Home = () => {
     district: "",
     province: "",
     country: "",
-    profilePicture: null,
+    profilePicture: "",
   });
 
   const [countries, setCountries] = useState([]);
+  const [storedData, setStoredData] = useState([]);
+
   useEffect(() => {
     // Fetch country list from API
     fetch("https://restcountries.com/v3.1/all")
@@ -41,27 +52,80 @@ const Home = () => {
       .catch((error) => console.error("Error fetching countries:", error));
   }, []);
 
-  const [storedData, setStoredData] = useState([]);
-
-  // Load stored data from localStorage when component mounts
   useEffect(() => {
-    const savedData = localStorage.getItem("storedData");
-    if (savedData) {
-      setStoredData(JSON.parse(savedData));
+    const data = getData();
+    setStoredData(data);
+    console.log(data);
+  }, [id]);
+
+  const validateForm = () => {
+    let isValid = true;
+    const errorMessage = { ...erMessage };
+
+    if (user.name === "") {
+      errorMessage.name = "Please enter your username.";
+      isValid = false;
+    } else {
+      errorMessage.name = "";
     }
-  }, []);
-  console.log(storedData, "saved data");
+    if (user.phoneNumber === "") {
+      errorMessage.phoneNumber = "Please enter your password.";
+      isValid = false;
+    } else {
+      errorMessage.phoneNumber = "";
+    }
+
+    if (user.email === "") {
+      errorMessage.email = "Please enter your Email.";
+      isValid = false;
+    } else if (!validEmail(user.email)) {
+      errorMessage.email = "Please enter a valid eamil";
+      isValid = false;
+    } else {
+      errorMessage.email = "";
+    }
+
+    setErMessager(errorMessage);
+    console.log(isValid);
+
+    return isValid;
+  };
+
+  // Handle delete
+  const handleDelete = (id) => {
+    console.log(id);
+    const updatedStoredData = storedData.filter((item) => item.id !== id);
+    setStoredData(updatedStoredData);
+    localStorage.setItem("storedData", JSON.stringify(updatedStoredData));
+  };
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const updatedStoredData = [...storedData, user];
-    setStoredData(updatedStoredData);
-    localStorage.setItem("storedData", JSON.stringify(updatedStoredData));
+    if (validateForm()) {
+      const item = {
+        ...user,
+        id: id || uuidv4(),
+      };
+      upsertData(item);
+      setStoredData(getData());
+    } else {
+      toast.error("🦄 Wow it did not save", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
 
     // Reset form after submission
     setUser({
+      id: "",
       name: "",
       email: "",
       phoneNumber: "",
@@ -70,13 +134,14 @@ const Home = () => {
       district: "",
       province: "",
       country: "Nepal",
+      profilePicture: "",
     });
   };
 
   const handleUserInput = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    // Perform validation checks and update error state
+    // Perform real time validation checks and update error state
     if (name === "name" && value.length < 3) {
       setErMessager((prevState) => ({
         ...prevState,
@@ -101,7 +166,7 @@ const Home = () => {
     } else {
       setErMessager((prevState) => ({
         ...prevState,
-        [name]: " ", // Reset error message
+        [name]: "", // Reset error message
       }));
     }
   };
@@ -123,8 +188,19 @@ const Home = () => {
           setUser={setUser}
           handleUserInput={handleUserInput}
           countries={countries}
+          id={id}
         />
-        <Table savedData={savedData} />
+        <Table
+          storedData={storedData}
+          header={header}
+          handleDelete={handleDelete}
+        />
+        <button
+          type="submit"
+          className="text-16 my-4 border border-bankGradient bg-bank-gradient  text-white shadow-form h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors "
+        >
+          Profiles
+        </button>
       </section>
     </section>
   );

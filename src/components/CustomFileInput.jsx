@@ -1,13 +1,10 @@
-import React from "react";
-
 const CustomFileInput = ({
   name,
   type = "file",
   label,
   placeholder,
-  value,
   onChange,
-  error,
+  value,
 }) => {
   return (
     <div className="flex bg-gray-200 rounded-md border-dashed-2 p-2 border-gray-500 flex-col gap-2 items-center place-items-center justify-center">
@@ -27,9 +24,11 @@ const CustomFileInput = ({
       </label>
       <input
         type={type}
+        value={value}
         accept="image/png"
-        name="button2"
         id="button2"
+        name={name}
+        onChange={onChange}
         className="border-gray-400/60 bg-gray-300 hover:border-gray-300 group abefore:inset-0 before:rounded-xl before:borderborder-dashed active:duration-75"
       />
     </div>

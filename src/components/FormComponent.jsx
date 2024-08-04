@@ -14,86 +14,10 @@ const FormComponent = ({
   setCountries,
   handleSubmit,
   handleUserInput,
+  id,
 }) => {
-  // const [countries, setCountries] = useState([]);
-  // useEffect(() => {
-  //   // Fetch country list from API
-  //   fetch("https://restcountries.com/v3.1/all")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const countryNames = data.map((country) => country.name.common);
-  //       setCountries(countryNames);
-  //     })
-  //     .catch((error) => console.error("Error fetching countries:", error));
-  // }, []);
-
-  // // const handleUserInput = (e) => {
-  // //   const { name, value } = e.target;
-  // //   setUser({ ...user, [name]: value });
-  // //   // Perform validation checks and update error state
-  // //   if (name === "name" && value.length < 3) {
-  // //     setErMessager((prevState) => ({
-  // //       ...prevState,
-  // //       name: "Name must be at least 3 characters long.",
-  // //     }));
-  // //   } else if (name === "email" && !validEmail(value)) {
-  // //     setErMessager((prevState) => ({
-  // //       ...prevState,
-  // //       email: "Please enter a valid email address.",
-  // //     }));
-  // //   } else if (name === "phoneNumber" && value.length < 7) {
-  // //     setErMessager((prevState) => ({
-  // //       ...prevState,
-  // //       phoneNumber: "Number must be at least 7 characters long.",
-  // //     }));
-  // //     if (!validNumber(value)) {
-  // //       setErMessager((prevState) => ({
-  // //         ...prevState,
-  // //         phoneNumber: "Number must be in number",
-  // //       }));
-  // //     }
-  // //   } else {
-  // //     setErMessager((prevState) => ({
-  // //       ...prevState,
-  // //       [name]: " ", // Reset error message
-  // //     }));
-  // //   }
-  // // };
-
-  // const [storedData, setStoredData] = useState([]);
-
-  // // Load stored data from localStorage when component mounts
-  // useEffect(() => {
-  //   const savedData = localStorage.getItem("storedData");
-  //   if (savedData) {
-  //     setStoredData(JSON.parse(savedData));
-  //   }
-  //   console.log(savedData, "saved data");
-  // }, []);
-
-  // // Handle form submission
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const updatedStoredData = [...storedData, user];
-  //   setStoredData(updatedStoredData);
-  //   localStorage.setItem("storedData", JSON.stringify(updatedStoredData));
-
-  //   // Reset form after submission
-  //   setUser({
-  //     name: "",
-  //     email: "",
-  //     phoneNumber: "",
-  //     dob: "",
-  //     city: "",
-  //     district: "",
-  //     province: "",
-  //     country: "Nepal",
-  //   });
-  // };
-
   return (
-    <form className="mx-auto">
+    <form method="POST" className="mx-auto">
       <CustomFileInput
         type="file"
         name="profilePicture"
@@ -195,7 +119,7 @@ const FormComponent = ({
         className="text-16 my-4 border border-bankGradient bg-bank-gradient  text-white shadow-form h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors "
         onClick={handleSubmit}
       >
-        Submit
+        {id ? "Edit" : "Submit"}
       </button>
     </form>
   );

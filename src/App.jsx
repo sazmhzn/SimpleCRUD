@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/Home" element={<Home />} />
+            <Route path="/Home/EditUser/:id" element={<Home />} />
           </Route>
         </Routes>
       </BrowserRouter>
