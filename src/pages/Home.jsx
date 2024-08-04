@@ -6,9 +6,9 @@ import { validEmail, validNumber } from "../constants";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { header } from "../constants/common";
-import { getData, upsertData } from "../service/StorageService";
+import { getData, searchById, upsertData } from "../service/StorageService";
 
 const Home = () => {
   const { id } = useParams();
@@ -99,6 +99,33 @@ const Home = () => {
     localStorage.setItem("storedData", JSON.stringify(updatedStoredData));
   };
 
+  useEffect(() => {
+    if (!id) {
+      // Clear user data if there's no userId
+      setUser({
+        id: "",
+        name: "",
+        email: "",
+        phoneNumber: "",
+        dob: "",
+        city: "",
+        district: "",
+        province: "",
+        country: "Nepal",
+        profilePicture: "",
+      });
+      console.log("No userId provided, clearing user data");
+    } else {
+      const foundUser = searchById(id);
+      if (foundUser) {
+        setUser(foundUser);
+      } else {
+        console.error("User not found");
+        setUser(null); // Clear user data if no user is found with the provided ID
+      }
+    }
+  }, [id]);
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -172,7 +199,14 @@ const Home = () => {
   };
 
   return (
-    <section className="no-scrollbar flex flex-col overflow-y-scroll bg-gray-25 p-8 md:max-h-screen xl:py-12;">
+    <section className="w-full no-scrollbar flex flex-col overflow-y-scroll bg-gray-25 p-8 md:max-h-screen xl:py-12;">
+      <div
+        className="text-[12px] font-semibold text-slate-500 mb-6"
+        aria-labelledby="breadcrumb"
+      >
+        <Link to={"/"}>Add User</Link>
+        {id && <Link> - Edit User</Link>}
+      </div>
       <HeaderBox
         title="User data"
         subtext="Please provide any specific details or notes related to the payment transfer"

@@ -27,6 +27,7 @@ export const upsertData = (item) => {
   if (existingItemIndex >= 0) {
     // Update existing item
     console.log("updating");
+    console.log(storedData);
     storedData[existingItemIndex] = item;
   } else {
     // Add new item
@@ -35,4 +36,10 @@ export const upsertData = (item) => {
   }
 
   saveData(storedData);
+};
+
+// Function to search for a user by ID
+export const searchById = (id) => {
+  const storedData = getData();
+  return storedData.find((item) => item.id === id);
 };

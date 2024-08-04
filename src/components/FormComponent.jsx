@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
 import CustomInput from "./CustomInput";
 import { CustomSelect } from "./CustomSelect";
 import { provinces } from "../constants/common";
 import CustomFileInput from "./CustomFileInput";
-import { validEmail, validNumber } from "../constants/index";
 
 const FormComponent = ({
   user,
-  setUser,
   erMessage,
-  setErMessager,
   countries,
-  setCountries,
   handleSubmit,
   handleUserInput,
   id,

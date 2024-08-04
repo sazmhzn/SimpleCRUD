@@ -1,10 +1,45 @@
 import { Link } from "react-router-dom";
 import HeaderBox from "./HeaderBox";
+import { useMemo, useState } from "react";
+import Pagination from "./Pagination";
+import CustomInput from "./CustomInput";
+import { CustomSelect } from "./CustomSelect";
 
 const Table = ({ storedData, handleDelete }) => {
+  const rowsLimit = 5;
+  const totalPage = Math.ceil(storedData.length / rowsLimit);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const rowsToShow = useMemo(() => {
+    const startIndex = currentPage * rowsLimit;
+    const endIndex = startIndex + rowsLimit;
+    return storedData.slice(startIndex, endIndex);
+  }, [currentPage, storedData]);
+
+  const nextPage = () => {
+    if (currentPage < totalPage - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const changePage = (value) => {
+    setCurrentPage(value);
+  };
+
   return (
     <div className="overflow-x-auto">
       <HeaderBox title="User details" subtext="All the user Details" />
+      <div>
+        <CustomInput />
+        <CustomSelect />
+      </div>
+
       <div className="flex-auto block py-8 pt-6 px-9">
         <div className="overflow-x-auto">
           <table className="w-full my-0 align-middle text-dark border-neutral-200">
@@ -19,7 +54,7 @@ const Table = ({ storedData, handleDelete }) => {
               </tr>
             </thead>
             <tbody>
-              {storedData.map((data, index) => {
+              {rowsToShow.map((data) => {
                 return (
                   <tr
                     key={data.id}
@@ -29,7 +64,7 @@ const Table = ({ storedData, handleDelete }) => {
                       <div className="flex items-center">
                         <div className="relative inline-block shrink-0 rounded-2xl me-3">
                           <img
-                            // src={data.profilePicture}
+                            src={data.profilePicture}
                             className="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl"
                             alt="profile"
                           />
@@ -80,6 +115,20 @@ const Table = ({ storedData, handleDelete }) => {
             </tbody>
           </table>
         </div>
+      </div>
+      <div className="w-full flex justify-center sm:justify-between flex-col sm:flex-row gap-5 mt-1.5 px-1 items-center">
+        <div className="text-sm text-neutral-400">
+          Showing {currentPage * rowsLimit + 1} to{" "}
+          {Math.min((currentPage + 1) * rowsLimit, storedData.length)} of{" "}
+          {storedData.length} entries
+        </div>
+        <Pagination
+          totalPage={totalPage}
+          currentPage={currentPage}
+          changePage={changePage}
+          nextPage={nextPage}
+          previousPage={previousPage}
+        />
       </div>
     </div>
   );

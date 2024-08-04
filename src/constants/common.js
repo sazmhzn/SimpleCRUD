@@ -30,3 +30,14 @@ export const header = [
     label: "City",
   },
 ];
+
+export const sidebarLinks = [
+  {
+    route: "/",
+    label: "Home",
+  },
+  {
+    route: "/Profile",
+    label: "Profile",
+  },
+];
