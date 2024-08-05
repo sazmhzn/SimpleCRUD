@@ -3,12 +3,16 @@ import Table from "../components/Table";
 import { useEffect, useState } from "react";
 import { getData } from "../service/StorageService";
 import { header } from "../constants/common";
+import Loader from "../components/Loader";
 
 const Profiles = () => {
   const [storedData, setStoredData] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
+
   useEffect(() => {
     const data = getData();
     setStoredData(data);
+    setLoading(false);
   }, []);
 
   // Handle delete
@@ -18,6 +22,10 @@ const Profiles = () => {
     setStoredData(updatedStoredData);
     localStorage.setItem("storedData", JSON.stringify(updatedStoredData));
   };
+
+  if (loading) {
+    return <Loader />; // Show loading indicator while data is loading
+  }
 
   return (
     <section className="w-full no-scrollbar flex flex-col overflow-y-scroll bg-gray-25 p-8 md:max-h-screen xl:py-12;">
