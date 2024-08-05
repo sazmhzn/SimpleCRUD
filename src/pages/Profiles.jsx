@@ -36,7 +36,7 @@ const Profiles = () => {
         <Link to={"/"} className="underline hover:text-primaryGradient">
           Add User
         </Link>
-        <Link> - Profile</Link>
+        <Link> {">"} Profile</Link>
       </div>
 
       <Table

@@ -218,7 +218,7 @@ const Home = () => {
         <Link to={"/"} className="underline hover:text-primaryGradient">
           Add User
         </Link>
-        {id && <Link> - Edit User</Link>}
+        {id && <Link>{"> "} Edit User</Link>}
       </div>
       <HeaderBox
         title="User data"
