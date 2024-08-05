@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link, useParams } from "react-router-dom";
 import { header } from "../constants/common";
 import { getData, searchById, upsertData } from "../service/StorageService";
+import { renderToString } from "react-dom/server";
+import Loader from "../components/Loader";
 
 const Home = () => {
   const { id } = useParams();
@@ -169,7 +171,10 @@ const Home = () => {
   };
 
   const handleUserInput = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
+    if (name === "profilePicture" && files.length > 0) {
+      setUser({ ...user, profilePicture: files[0] });
+    }
     setUser({ ...user, [name]: value });
     // Perform real time validation checks and update error state
     if (name === "name" && value.length < 3) {
@@ -200,6 +205,10 @@ const Home = () => {
       }));
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <section className="w-full no-scrollbar flex flex-col overflow-y-scroll bg-gray-25 p-8 md:max-h-screen xl:py-12;">

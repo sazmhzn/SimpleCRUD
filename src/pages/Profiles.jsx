@@ -41,6 +41,7 @@ const Profiles = () => {
         storedData={storedData}
         header={header}
         handleDelete={handleDelete}
+        pagination={false}
       />
     </section>
   );
