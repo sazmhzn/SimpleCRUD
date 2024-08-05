@@ -10,7 +10,6 @@ const Pagination = ({
       <div className="flex">
         <ul
           className="flex justify-center items-center gap-x-[10px] z-30"
-          role="navigation"
           aria-label="Pagination"
         >
           <li

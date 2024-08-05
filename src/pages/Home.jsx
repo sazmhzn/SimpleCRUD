@@ -55,7 +55,6 @@ const Home = () => {
   useEffect(() => {
     const data = getData();
     setStoredData(data);
-    console.log(data);
   }, [id]);
 
   const validateForm = () => {
@@ -114,13 +113,13 @@ const Home = () => {
         country: "Nepal",
         profilePicture: "",
       });
-      console.log("No userId provided, clearing user data");
+      // console.log("No userId provided, clearing user data");
     } else {
       const foundUser = searchById(id);
       if (foundUser) {
         setUser(foundUser);
       } else {
-        console.error("User not found");
+        // console.error("User not found");
         setUser(null); // Clear user data if no user is found with the provided ID
       }
     }
@@ -135,6 +134,8 @@ const Home = () => {
         ...user,
         id: id || uuidv4(),
       };
+
+      console.log(item, "user data");
       upsertData(item);
       setStoredData(getData());
     } else {

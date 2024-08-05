@@ -1,11 +1,4 @@
-const CustomFileInput = ({
-  name,
-  type = "file",
-  label,
-  placeholder,
-  onChange,
-  value,
-}) => {
+const CustomFileInput = ({ name, type = "file", label, onChange, value }) => {
   return (
     <div className="flex bg-gray-200 rounded-md border-dashed-2 p-2 border-gray-500 flex-col gap-2 items-center place-items-center justify-center">
       <label
