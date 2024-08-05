@@ -111,7 +111,7 @@ const FormComponent = ({
 
       <button
         type="submit"
-        className="text-16 my-4 border border-bankGradient bg-bank-gradient  text-white shadow-form h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors "
+        className="text-16 my-4 border border-primaryGradient bg-bank-gradient  text-white shadow-form h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors "
         onClick={handleSubmit}
       >
         {id ? "Edit" : "Submit"}

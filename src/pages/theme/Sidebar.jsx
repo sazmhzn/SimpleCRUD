@@ -26,7 +26,7 @@ const Sidebar = () => {
                   to={item.route}
                   key={`${item} - ${index}`}
                   className={`${
-                    isActive && "bg-bankGradient"
+                    isActive && "bg-primaryGradient"
                   } flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start
                   `}
                   onClick={() => {

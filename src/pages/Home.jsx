@@ -207,7 +207,9 @@ const Home = () => {
         className="text-[12px] font-semibold text-slate-500 mb-6"
         aria-labelledby="breadcrumb"
       >
-        <Link to={"/"}>Add User</Link>
+        <Link to={"/"} className="underline hover:text-primaryGradient">
+          Add User
+        </Link>
         {id && <Link> - Edit User</Link>}
       </div>
       <HeaderBox
@@ -235,7 +237,7 @@ const Home = () => {
         <Link to={"/Profile"}>
           <button
             type="submit"
-            className="text-16 my-4 border border-bankGradient bg-bank-gradient  text-white shadow-form h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors "
+            className="text-16 my-4 border border-primaryGradient bg-bank-gradient  text-white shadow-form h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors "
           >
             Profiles
           </button>
