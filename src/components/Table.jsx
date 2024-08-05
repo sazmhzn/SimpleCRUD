@@ -67,8 +67,8 @@ const Table = ({ storedData, handleDelete }) => {
           <table className="w-full my-0 align-middle text-dark border-neutral-200">
             <thead className=" bg-neutral-300 px-2">
               <tr className="font-semibold text-[0.95rem] text-secondary-dark">
-                <th className="py-3 text-start min-w-[25px]">ID</th>
-                <th className="py-3 text-start min-w-[100px]">Name</th>
+                <th className="p-3 text-start min-w-[15px]">ID</th>
+                <th className="py-3 text-start min-w-[90px]">Name</th>
                 <th className="py-3 text-start min-w-[100px]">Email</th>
                 <th className="py-3 pr-12 text-start min-w-[100px]">Phone</th>
                 <th className="py-3 pr-12 text-start min-w-[90px]">City</th>
@@ -87,33 +87,33 @@ const Table = ({ storedData, handleDelete }) => {
                         <div className="relative inline-block shrink-0 rounded-2xl me-3">
                           <img
                             src={data.profilePicture || "user.png"}
-                            className="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl"
+                            className="w-[32px] h-[32px] inline-block shrink-0 rounded-2xl aspect-square"
                             alt="profile"
                           />
                         </div>
                       </div>
                     </td>
-                    <td className="p-0 pr-0 text-start">
+                    <td className="p-0 pr-0 text-start sm:text-sm">
                       <span className=" text-light-inverse text-md/normal">
                         {data.name}
                       </span>
                     </td>
-                    <td className="p-0 pr-4 text-start">
+                    <td className="p-0 pr-4 text-start sm:text-sm">
                       <span className="text-center align-baseline inline-flex px-2 py-1 mr-auto items-center text-base/none text-success bg-success-light rounded-lg">
                         {data.email}
                       </span>
                     </td>
-                    <td className="p-0 pr-10 text-start">
+                    <td className="p-0 pr-10 text-start sm:text-sm">
                       <span className="text-left align-baseline inline-flex px-0 py-3 items-center text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">
                         {data.phoneNumber}
                       </span>
                     </td>
-                    <td className="pr-0 text-start">
+                    <td className="pr-0 text-start sm:text-sm">
                       <span className=" text-light-inverse text-md/normal">
                         {data.city.length > 0 ? data.city : "-"}
                       </span>
                     </td>
-                    <td className="py-3 pr-0 text-start flex gap-4">
+                    <td className="py-3 pr-0 text-start flex gap-4 sm:text-sm">
                       <Link
                         onClick={() => handleDelete(data.id)}
                         className="w-fit gap-2 relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-200 ease-in-out shadow-none border-0 justify-center py-4"

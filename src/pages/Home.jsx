@@ -12,6 +12,7 @@ import { getData, searchById, upsertData } from "../service/StorageService";
 
 const Home = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
 
   const [user, setUser] = useState({
     id: "",
@@ -55,6 +56,7 @@ const Home = () => {
   useEffect(() => {
     const data = getData();
     setStoredData(data);
+    setLoading(false); // Data fetched, stop loading
   }, [id]);
 
   const validateForm = () => {
