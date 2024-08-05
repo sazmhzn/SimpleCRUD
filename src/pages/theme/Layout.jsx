@@ -1,12 +1,9 @@
-// import { Outlet } from "react-router-dom";
-import Home from "../Home";
-import Sidebar from "./Sidebar";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
     <div className="flex">
-      <Sidebar />
-      <Home />
+      <Outlet />
     </div>
   );
 };

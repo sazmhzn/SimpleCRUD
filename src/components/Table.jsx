@@ -62,17 +62,17 @@ const Table = ({ storedData, handleDelete }) => {
         {/* <CustomSelect /> */}
       </div>
 
-      <div className="flex-auto block py-8 pt-6 px-9">
+      <div className="flex-auto block py-8 pt-6 px-0 ">
         <div className="">
           <table className="w-full my-0 align-middle text-dark border-neutral-200">
-            <thead className="align-bottom">
+            <thead className=" bg-neutral-300 px-2">
               <tr className="font-semibold text-[0.95rem] text-secondary-dark">
-                <th className="pb-3 text-start min-w-[25px]">ID</th>
-                <th className="pb-3 text-start min-w-[100px]">Name</th>
-                <th className="pb-3 text-start min-w-[100px]">Email</th>
-                <th className="pb-3 pr-12 text-start min-w-[100px]">Phone</th>
-                <th className="pb-3 pr-12 text-start min-w-[90px]">City</th>
-                <th className="pb-3 text-start min-w-[100px]">Action</th>
+                <th className="py-3 text-start min-w-[25px]">ID</th>
+                <th className="py-3 text-start min-w-[100px]">Name</th>
+                <th className="py-3 text-start min-w-[100px]">Email</th>
+                <th className="py-3 pr-12 text-start min-w-[100px]">Phone</th>
+                <th className="py-3 pr-12 text-start min-w-[90px]">City</th>
+                <th className="py-3 text-start min-w-[100px]">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -113,18 +113,18 @@ const Table = ({ storedData, handleDelete }) => {
                         {data.city.length > 0 ? data.city : "-"}
                       </span>
                     </td>
-                    <td className="p-3 pr-0 text-start flex">
+                    <td className="py-3 pr-0 text-start flex gap-4">
                       <Link
                         onClick={() => handleDelete(data.id)}
-                        className=" gap-2 relative text-secondary-dark bg-light-dark hover:text-primary flex items-center h-[25px] w-[25px] text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-200 ease-in-out shadow-none border-0 justify-center"
+                        className="w-fit gap-2 relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-200 ease-in-out shadow-none border-0 justify-center py-4"
                       >
-                        <span className="text-red-600 flex items-center justify-center p-0 m-0 leading-none shrink-0 ">
+                        <span className="text-red-600 flex items-center justify-center leading-none shrink-0 ">
                           delete
                         </span>
                       </Link>
                       <Link
-                        to={`/Home/EditUser/${data.id}`}
-                        className="ml-auto gap-4 relative text-secondary-dark bg-light-dark hover:text-primary flex items-center h-[25px] w-[25px] text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-200 ease-in-out shadow-none border-0 justify-center"
+                        to={`/EditUser/${data.id}`}
+                        className="w-fit gap-2 relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-200 ease-in-out shadow-none border-0 justify-center py-3"
                       >
                         <span className="text-blue-400 flex items-center justify-center p-0 m-0 leading-none shrink-0 ">
                           edit

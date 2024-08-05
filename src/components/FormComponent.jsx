@@ -12,7 +12,7 @@ const FormComponent = ({
   id,
 }) => {
   return (
-    <form method="POST" className="mx-auto">
+    <form method="POST" className="mx-auto mb-12">
       <CustomFileInput
         type="file"
         name="profilePicture"
