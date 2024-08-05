@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link, useParams } from "react-router-dom";
 import { header } from "../constants/common";
 import { getData, searchById, upsertData } from "../service/StorageService";
-import { renderToString } from "react-dom/server";
 import Loader from "../components/Loader";
 
 const Home = () => {

@@ -68,8 +68,8 @@ const Table = ({ storedData, handleDelete, pagination = true }) => {
       </div>
 
       <div className="flex-auto block py-8 pt-6 px-0 ">
-        <div className="">
-          <table className="w-full my-0 align-middle text-dark border-neutral-200">
+        <div className="bg-neutral-100">
+          <table className="w-full my-0 align-middle text-dark border-neutral-200 ">
             <thead className=" bg-neutral-300 px-2">
               <tr className="font-semibold text-[0.95rem] text-secondary-dark">
                 <th className="p-3 text-start min-w-[15px]">ID</th>

@@ -33,7 +33,9 @@ const Profiles = () => {
         className="text-[12px] font-semibold text-slate-500 mb-6"
         aria-labelledby="breadcrumb"
       >
-        <Link to={"/"}>Add User</Link>
+        <Link to={"/"} className="underline hover:text-primaryGradient">
+          Add User
+        </Link>
         <Link> - Profile</Link>
       </div>
 
