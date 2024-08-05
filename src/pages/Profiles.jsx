@@ -11,6 +11,14 @@ const Profiles = () => {
     setStoredData(data);
   }, []);
 
+  // Handle delete
+  const handleDelete = (id) => {
+    console.log(id);
+    const updatedStoredData = storedData.filter((item) => item.id !== id);
+    setStoredData(updatedStoredData);
+    localStorage.setItem("storedData", JSON.stringify(updatedStoredData));
+  };
+
   return (
     <section className="w-full no-scrollbar flex flex-col overflow-y-scroll bg-gray-25 p-8 md:max-h-screen xl:py-12;">
       <div
@@ -24,7 +32,7 @@ const Profiles = () => {
       <Table
         storedData={storedData}
         header={header}
-        // handleDelete={handleDelete}
+        handleDelete={handleDelete}
       />
     </section>
   );

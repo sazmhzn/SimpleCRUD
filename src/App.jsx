@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 // import Profiles from "./pages/Profiles";
 import Loader from "./components/Loader"; // Loader component for fallback
 import { lazy, Suspense } from "react";
+import NotFound from "./components/NotFound";
 
 const Profiles = lazy(() => import("./pages/Profiles"));
 
@@ -24,6 +25,8 @@ function App() {
                 </Suspense>
               }
             />
+            <Route path="*" element={<NotFound />} />{" "}
+            {/* Add the NotFound route */}
           </Route>
         </Routes>
       </BrowserRouter>
